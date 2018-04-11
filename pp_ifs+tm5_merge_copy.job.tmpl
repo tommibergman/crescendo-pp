@@ -1,0 +1,18 @@
+#PBS -N ifs_merge.yyyy
+#PBS -q nf
+#PBS -l EC_total_tasks=1
+#PBS -l EC_hyperthreads=2
+#PBS -l EC_memory_per_task=12gb
+#PBS -j oe
+#PBS -o out/ifs_merge.out.yyyy     
+# Load the cray-snplauncher module to add the mpiexec command to $PATH
+module load cray-snplauncher
+
+
+# execute
+mpiexec -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs_year.sh yyyy
+
+
+
+
+
