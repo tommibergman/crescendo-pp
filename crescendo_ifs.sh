@@ -24,7 +24,7 @@ echo 'processing month ' $i
 
 outdir=${IFStemp}
 mkdir -p ${IFStemp}
-
+rm -f *_${year}${i}.nc
 
 cdo -t ecmwf -R splitzaxis -shifttime,-6hour ${datapath}/ICMGG${exp}+${year}${i} ${IFStemp}/ICMGG${exp}+${year}${i}_split
 cdo -t ecmwf -R splitzaxis  -shifttime,-6hour  ${datapath}/ICMSH${exp}+${year}${i} ${IFStemp}/ICMSH${exp}+${year}${i}_split
@@ -76,7 +76,7 @@ cdo -t ecmwf -f nc expr,"va=V;" -sp2gp ${IFStemp}/ICMSH${exp}+${year}${i}_split0
 cdo -t ecmwf -f nc expr,"wa=Z;" -sp2gp ${IFStemp}/ICMSH${exp}+${year}${i}_split03.grb ${IFStemp}/wa_${aermon3d}_${year}${i}.nc
 
 
-
+rm -f *_${year}${i}.mm.nc
 
 for varfile in ${IFStemp}/*_AERmon_${year}${i}.nc
 do
