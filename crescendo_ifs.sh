@@ -3,13 +3,13 @@ set -ex
 year=$2
 name="CRESCENDO"
 temp=$((year-1999))
-dd=`printf %03d $temp`
-echo $temp $dd
+leg=`printf %03d $temp`
+echo $temp $leg
 runid="crsp"
 
 basepath=${SCRATCH}/CRESCENDO
-outdir=${basepath}/amip-pd-${yyyy}
-datapath=${SCRATCH}/ECEARTH-RUNS/${runid}/output/ifs/${dd}
+#outdir=${basepath}/amip-pd-${yyyy}
+datapath=${SCRATCH}/ECEARTH-RUNS/${runid}/output/ifs/${leg}
 IFStemp=${basepath}/ifstemp/
 aermon3d='AERmon'
 aerday2d='AERday'
@@ -22,9 +22,9 @@ exp='crsp'
 i=$(printf %02d $1)
 echo 'processing month ' $i
 
-outdir=${IFStemp}
+#outdir=${IFStemp}${year}
 mkdir -p ${IFStemp}
-rm -f *_${year}${i}.nc
+#rm -f *_${year}${i}.nc
 
 cdo -t ecmwf -R splitzaxis -shifttime,-6hour ${datapath}/ICMGG${exp}+${year}${i} ${IFStemp}/ICMGG${exp}+${year}${i}_split
 cdo -t ecmwf -R splitzaxis  -shifttime,-6hour  ${datapath}/ICMSH${exp}+${year}${i} ${IFStemp}/ICMSH${exp}+${year}${i}_split
@@ -76,7 +76,7 @@ cdo -t ecmwf -f nc expr,"va=V;" -sp2gp ${IFStemp}/ICMSH${exp}+${year}${i}_split0
 cdo -t ecmwf -f nc expr,"wa=Z;" -sp2gp ${IFStemp}/ICMSH${exp}+${year}${i}_split03.grb ${IFStemp}/wa_${aermon3d}_${year}${i}.nc
 
 
-rm -f *_${year}${i}.mm.nc
+#rm -f *_${year}${i}.mm.nc
 
 for varfile in ${IFStemp}/*_AERmon_${year}${i}.nc
 do
