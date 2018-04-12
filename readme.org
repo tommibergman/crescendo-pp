@@ -1,0 +1,4 @@
+* CRESCENDO output postprocessing
+
+Postprocessing scripts consist of two scripts for processing, two jobfile templates and script to generate actual jobscripts for 2000-2014
+
