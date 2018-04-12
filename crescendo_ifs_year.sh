@@ -108,6 +108,6 @@ cp ${IFStemp}/va_${aermon3d}_${yyyy}.nc ${outdir}/va_crescendo_${aermon3dout}_${
 cp ${IFStemp}/wa_${aermon3d}_${yyyy}.nc ${outdir}/wa_crescendo_${aermon3dout}_${yyyy}.nc
 
 #copy remaining TM5 data to outputdir + make tarball
-/perm/ms/nl/nktb/crescendo/output-copy-transfer.sh ${yyyy}
+/perm/ms/nl/nktb/crescendo/output-copy.sh ${yyyy}
 
 
