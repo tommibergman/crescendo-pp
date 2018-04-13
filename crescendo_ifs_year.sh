@@ -52,6 +52,9 @@ do
     cdo mergetime ${IFStemp}/$(basename $i 01.nc)??.nc  ${IFStemp}/$(basename $i 01.nc).nc
 done 
 
+# remove monthly tempfiles
+rm -f ${IFStemp}/*_AER???_${yyyy}??.mm.nc
+rm -f ${IFStemp}/*_AER???_${yyyy}??.nc
 
 
 
