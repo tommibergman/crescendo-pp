@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 #run year
 yyyy=$1
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 year=$2
 name="CRESCENDO"
 temp=$((year-1999))
