@@ -1,25 +1,26 @@
 #!/bin/bash
-set -e
+set -ex
 #run year
-yyyy=$1
+yyyy=$2
 
 # id needed for reading data ${SCRATCH}/ECEARTH-RUNS/${runid}
-runid=crsp
+runid=$1
 
 #basepath, tarfile directory
 basepath=${SCRATCH}/CRESCENDO
 
 # upload directory
-outdir=${basepath}/amip-pd-${yyyy}
+outdir=${basepath}/amip-${runid}-${yyyy}
 mkdir -p ${outdir}
 
 # calculate the directory name, for CRESCENDO 2000 equals 001
-temp=$((yyyy-1999))
-dd=`printf %03d $temp`
-echo $temp $dd
+year0=$(head -5 ${SCRATCH}/ECEARTH-RUNS/${runid}/ece.info |tail -1|cut -b 29-32)
+temp=$((yyyy-year0+1))
+leg=`printf %03d $temp`
+echo $temp $leg
 
 #reading data from here
-datapath=${SCRATCH}/ECEARTH-RUNS/${runid}/output/tm5/${dd}/
+datapath=${SCRATCH}/ECEARTH-RUNS/${runid}/output/tm5/${leg}/
 
 #IFS
 #cp ${datapath}/tos* ${outdir}/
@@ -166,12 +167,12 @@ cp ${datapath}/mmrdust_AERmon_* ${outdir}/
 cp ${datapath}/so2_AERmon_* ${outdir}/
 #molecweight wrong nacl instead of isop
 #multiply with xmnacl/xmisop
-#cp ${datapath}/isop_AERmon_* ${outdir}/
-cdo expr,'isop=isop*58.443/68.11895;' ${datapath}/isop_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc ${outdir}/isop_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc
+cp ${datapath}/isop_AERmon_* ${outdir}/
+#cdo expr,'isop=isop*58.443/68.11895;' ${datapath}/isop_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc ${outdir}/isop_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc
 #ch2o=hcho
 #cp ${datapath}/hcho_AERmon_* ${outdir}/
-#cp ${datapath}/ch2o_AERmon_* ${outdir}/
-cdo expr,'hcho=ch2o;' ${datapath}/ch2o_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc ${outdir}/hcho_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc
+cp ${datapath}/hcho_AERmon_* ${outdir}/
+#cdo expr,'hcho=ch2o;' ${datapath}/ch2o_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc ${outdir}/hcho_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc
 cp ${datapath}/dms_AERmon_* ${outdir}/
 cp ${datapath}/hno3_AERmon_* ${outdir}/
 cp ${datapath}/pan_AERmon_* ${outdir}/
@@ -187,23 +188,32 @@ if [ ${yyyy} -eq "2000" ]
 then
 
     cp ${datapath}/areacella_AERfx_* ${outdir}/
-    cdo chname,sftlf,land_area_fraction ${datapath}/sftlf_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc ${outdir}/land_area_fraction_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc
-    cdo chname,orog,surface_altitude ${datapath}/orog_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc ${outdir}/surface_altitude_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc
+    cp ${datapath}/sftlf_AERfx_* ${outdir}/
+    cp ${datapath}/orog_AERfx_* ${outdir}/
+    #cdo chname,sftlf,land_area_fraction ${datapath}/sftlf_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc ${outdir}/land_area_fraction_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc
+    #cdo chname,orog,surface_altitude ${datapath}/orog_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc ${outdir}/surface_altitude_AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn.nc
 fi
 cp ${datapath}/*_crescendo_* ${outdir}/
-rm -f ${outdir}/co_cre*
-#initially crescendo co has -1 as the molecular weight, to correct:
-cdo  expr,'co=-co/28.0109;' ${datapath}/co_crescendo_AERday_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}0101-${yyyy}1231.nc  ${outdir}/co_crescendo_AERday_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}0101-${yyyy}1231.nc 
+
+#initially crescendo co has -1 as the molecular weight, 
+#now fixed in r5717_crescendo_amip, June 2018, copied in above statement
+#rm -f ${outdir}/co_cre*
+#cdo  expr,'co=-co/28.0109;' ${datapath}/co_crescendo_AERday_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}0101-${yyyy}1231.nc  ${outdir}/co_crescendo_AERday_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}0101-${yyyy}1231.nc 
 #Change the name 
 cdo  expr,'chepsoa=chepsoa3d;' ${datapath}/chepsoa3d_crescendo_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc  ${outdir}/chepsoa_crescendo_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc 
-
+#cp ${datapath}/chepsoa
 rm  -f ${outdir}/co2mass_cre*
 rm  -f ${outdir}/chepsoa3d_cre*
-# wrong and not in the request
+# not needed in the request, from earlier version...
 rm  -f ${outdir}/chepsoa2d_cre*
 cd ${basepath}
-tar vfcz amip-pd-${yyyy}.tar.gz amip-pd-${yyyy}
+tar vfcz amip-${runid}-${yyyy}.tar.gz amip-${runid}-${yyyy}
 ##
+#if [ ${yyyy} -ge "2000" ] 
+#then
 #JASMINPATH
-#scp amip-pd-${yyyy}.tar.gz ${JASMIN}:${JASMINPATH}
+JASMIN=bergmant@jasmin-xfer1.ceda.ac.uk
+JASMINPATH=/group_workspaces/jasmin2/crescendo/bergmant/
+scp amip-${runid}-${yyyy}.tar.gz ${JASMIN}:${JASMINPATH}
+#fi
 cd -

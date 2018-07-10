@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-yyyy=$1
+runid=$1
+yyyy=$2
 name="CRESCENDO"
 
 aermon3dout='AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn-IFS_'${yyyy}'01-'${yyyy}'12'
@@ -17,10 +18,10 @@ aer6hr='AER6hr'
 #basepath for CRESCENOD processed output
 basepath=${SCRATCH}/CRESCENDO
 #output direcotry
-outdir=${basepath}/amip-pd-${yyyy}
+outdir=${basepath}/amip-${runid}-${yyyy}
 
 #temp for ifs files
-IFStemp=${basepath}/ifstemp/
+IFStemp=${basepath}/ifstemp/${runid}/
 
 #make sure we have an output directory
 mkdir -p ${outdir}
@@ -103,6 +104,7 @@ cp ${IFStemp}/ps_${aerday2d}_${yyyy}.nc     ${outdir}/ps_crescendo_${aerday2dout
 
     #aermon-3d
 cp ${IFStemp}/clt_${aermon3d}_${yyyy}.nc ${outdir}/clt_crescendo_${aermon3dout}_${yyyy}.nc
+cp ${IFStemp}/cdnc_${aermon3d}_${yyyy}.nc ${outdir}/clt_crescendo_${aermon3dout}_${yyyy}.nc
 
 
 #SH file
@@ -111,6 +113,6 @@ cp ${IFStemp}/va_${aermon3d}_${yyyy}.nc ${outdir}/va_crescendo_${aermon3dout}_${
 cp ${IFStemp}/wa_${aermon3d}_${yyyy}.nc ${outdir}/wa_crescendo_${aermon3dout}_${yyyy}.nc
 
 #copy remaining TM5 data to outputdir + make tarball
-/perm/ms/nl/nktb/crescendo/output-copy.sh ${yyyy}
+/perm/ms/nl/nktb/crescendo/output-copy.sh ${runid} ${yyyy}
 
 
