@@ -39,6 +39,7 @@ Usage (from runfile):
 qsub pp_ifs+tm5_merge_copy.job
 
 ++ crescendo_ifs.sh ++
+
 The script will process monthly IFS data for CRESCENDO to produce daily and monthly means for requested variables. 
 Script will takes as an argument runid, year and month.
 
@@ -46,6 +47,7 @@ Usage:
 crescendo_ifs.sh runid m yyyy
 
 ++ crescendo_ifs_year.sh ++
+
 The script will process the averaged IFS data for CRESCENDO to produce yearly files for requested variables. 
 Script takes as an argument runid and year, and in the end run also output-copy-transfer.sh. 
 
@@ -53,6 +55,7 @@ Usage:
 crescendo_ifs.sh runid yyyy
 
 ++ output-copy.sh ++
+
 This script will copy the data from IFS and TM5 into ${SCRATCH}/CRESCENDO/amip-pd-${yyyy}. A tarball (amip-pd-${yyyy}.tar.gz) including this folder will be created in
 ${SCRATCH}/CRESCENDO/ .
 
