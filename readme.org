@@ -18,9 +18,8 @@ qsub pp_ifs_monthly.job
       output-copy.sh runid yyyy
 
 
-++ create_jobfiles.sh ++
 
-++ pp_ifs_monthly_auto.job.tmpl
+** pp_ifs_monthly_auto.job.tmpl
 
 Template for automatic job file creation at the end of one leg. At the end of leg the run-file of EC-Earth will replace yyyy 
 with the current run year and idid with current runid.
@@ -29,7 +28,7 @@ This job script will run  crescendo_ifs.sh for months 1-12 and at the end will s
 Usage (from runfile):
 qsub pp_ifs_monthly.job
 
-++ pp_ifs+tm5_merge_copy_auto.job.tmpl ++
+** pp_ifs+tm5_merge_copy_auto.job.tmpl 
 
 Template for automatic job file creation at the end of one leg. yyyy replaced with the current run year and 
 idid will be replaced with current runid to create a jobfile  pp_ifs+tm5_merge_copy.job. This will execute crescendo_ifs_year.sh
@@ -38,7 +37,7 @@ which subsequently executes output-copy.sh
 Usage (from runfile):
 qsub pp_ifs+tm5_merge_copy.job
 
-++ crescendo_ifs.sh ++
+** crescendo_ifs.sh 
 
 The script will process monthly IFS data for CRESCENDO to produce daily and monthly means for requested variables. 
 Script will takes as an argument runid, year and month.
@@ -46,7 +45,7 @@ Script will takes as an argument runid, year and month.
 Usage:
 crescendo_ifs.sh runid m yyyy
 
-++ crescendo_ifs_year.sh ++
+** crescendo_ifs_year.sh 
 
 The script will process the averaged IFS data for CRESCENDO to produce yearly files for requested variables. 
 Script takes as an argument runid and year, and in the end run also output-copy-transfer.sh. 
@@ -54,7 +53,7 @@ Script takes as an argument runid and year, and in the end run also output-copy-
 Usage:
 crescendo_ifs.sh runid yyyy
 
-++ output-copy.sh ++
+** output-copy.sh 
 
 This script will copy the data from IFS and TM5 into ${SCRATCH}/CRESCENDO/amip-pd-${yyyy}. A tarball (amip-pd-${yyyy}.tar.gz) including this folder will be created in
 ${SCRATCH}/CRESCENDO/ .
