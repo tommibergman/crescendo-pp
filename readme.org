@@ -3,14 +3,14 @@ Author: Tommi Bergman KNMI
 
 Postprocessing scripts consist of three scripts for processing, two jobfile templates.
 FLOW:
-sed s/yyyy/${year}/g  pp_ifs_monthly_auto.job.tmpl>tmp.file 
-sed s/yyyy/${year}/g  tmp.file>pp_ifs_monthly.job 
-sed s/yyyy/${year}/g  pp_ifs+tm5_merge_copy_auto.job.tmpl>tmp.file 
-sed s/yyyy/${year}/g  tmp.file> pp_ifs+tm5_merge_copy_auto.job 
+Create jobfiles
+sed "s/yyyy/${year}/g"  pp_ifs_monthly_auto.job.tmpl        | sed "s/idid/${runid}/g  > pp_ifs_monthly.${year}job 
+sed "s/yyyy/${year}/g"  pp_ifs+tm5_merge_copy_auto.job.tmpl | sed "s/idid/${runid}/g" > pp_ifs+tm5_merge_copy.${year}.job 
+
 
 qsub pp_ifs_monthly.job
   EXECUTES:
-  crescendo_ifs.sh runid m yyyy
+  crescendo_ifs.sh runid m yyyy ;for months 1..12 in parallel
   qsub pp_ifs+tm5_merge_copy.job
     EXECUTES:
     crescendo_ifs.sh runid yyyy
@@ -60,5 +60,6 @@ ${SCRATCH}/CRESCENDO/ .
 
 Usage:
 output-copy.sh runid yyyy
+
 
 
