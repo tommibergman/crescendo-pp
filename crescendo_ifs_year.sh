@@ -23,6 +23,9 @@ outdir=${basepath}/amip-${runid}-${yyyy}
 #temp for ifs files
 IFStemp=${basepath}/ifstemp/${runid}/
 
+#make sure ifs temp does not have yearly files
+rm -f ${IFStemp}/*_${yyyy}.nc
+
 #make sure we have an output directory
 mkdir -p ${outdir}
 
