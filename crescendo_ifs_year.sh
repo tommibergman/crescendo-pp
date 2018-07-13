@@ -61,7 +61,7 @@ rm -f ${IFStemp}/*_AER???_${yyyy}??.mm.nc
 rm -f ${IFStemp}/*_AER???_${yyyy}??.nc
 
 
-
+echo "copying ifs files to final output dir: ${outdir}"
 #aermon-2d${aer
 cp ${IFStemp}/tos_${aermon2d}_${yyyy}.nc ${outdir}/tos_crescendo_${aermon2dout}_${yyyy}.nc
 cp ${IFStemp}/sic_${aermon2d}_${yyyy}.nc ${outdir}/sic_crescendo_${aermon2dout}_${yyyy}.nc
@@ -114,7 +114,8 @@ cp ${IFStemp}/cdnc_${aermon3d}_${yyyy}.nc ${outdir}/clt_crescendo_${aermon3dout}
 cp ${IFStemp}/ua_${aermon3d}_${yyyy}.nc ${outdir}/ua_crescendo_${aermon3dout}_${yyyy}.nc
 cp ${IFStemp}/va_${aermon3d}_${yyyy}.nc ${outdir}/va_crescendo_${aermon3dout}_${yyyy}.nc
 cp ${IFStemp}/wa_${aermon3d}_${yyyy}.nc ${outdir}/wa_crescendo_${aermon3dout}_${yyyy}.nc
-
+echo "removing intermediate files from ifstemp: ${IFStemp}"
+rm -f ${IFStemp}/*
 #copy remaining TM5 data to outputdir + make tarball
 /perm/ms/nl/nktb/crescendo/output-copy.sh ${runid} ${yyyy}
 
