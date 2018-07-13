@@ -216,4 +216,8 @@ JASMIN=bergmant@jasmin-xfer1.ceda.ac.uk
 JASMINPATH=/group_workspaces/jasmin2/crescendo/bergmant/
 scp amip-${runid}-${yyyy}.tar.gz ${JASMIN}:${JASMINPATH}
 #fi
+rm -f amip-${runid}-${yyyy}.tar.gz
 cd -
+#set +x
+#/perm/ms/nl/nktb/ece3-raw-backup/sub_ece3_bckp.sh ${runid} ${leg}
+#set -x
