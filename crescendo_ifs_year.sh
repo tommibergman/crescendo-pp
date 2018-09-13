@@ -8,6 +8,7 @@ aermon3dout='AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn-IFS_'${yyyy}'01-'${yyyy}'
 aerday2dout='AERday_EC-Earth3-AerChem_id00_r1i1p1f1_gn-IFS_'${yyyy}'0101-'${yyyy}'1231'
 aermon2dout='AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn-IFS_'${yyyy}'01-'${yyyy}'12'
 aer6hrout='AER6hr_EC-Earth3-AerChem_id00_r1i1p1f1_gn-IFS_'${yyyy}'01010000-'${yyyy}'12311800'
+aerfxout='AERfx_EC-Earth3-AerChem_id00_r1i1p1f1_gn-IFS_'${yyyy}
 
 aermon3d='AERmon'
 aerday2d='AERday'
@@ -107,15 +108,17 @@ cp ${IFStemp}/ps_${aerday2d}_${yyyy}.nc     ${outdir}/ps_crescendo_${aerday2dout
 
     #aermon-3d
 cp ${IFStemp}/clt_${aermon3d}_${yyyy}.nc ${outdir}/clt_crescendo_${aermon3dout}_${yyyy}.nc
-cp ${IFStemp}/cdnc_${aermon3d}_${yyyy}.nc ${outdir}/clt_crescendo_${aermon3dout}_${yyyy}.nc
+cp ${IFStemp}/cdnc_${aermon3d}_${yyyy}.nc ${outdir}/cdnc_crescendo_${aermon3dout}_${yyyy}.nc
 
 
 #SH file
 cp ${IFStemp}/ua_${aermon3d}_${yyyy}.nc ${outdir}/ua_crescendo_${aermon3dout}_${yyyy}.nc
 cp ${IFStemp}/va_${aermon3d}_${yyyy}.nc ${outdir}/va_crescendo_${aermon3dout}_${yyyy}.nc
 cp ${IFStemp}/wa_${aermon3d}_${yyyy}.nc ${outdir}/wa_crescendo_${aermon3dout}_${yyyy}.nc
-echo "removing intermediate files from ifstemp: ${IFStemp}"
-rm -f ${IFStemp}/*
+cp ${IFStemp}/areacella_AERfx_${yyyy}.temp.nc ${outdir}/areacella_crescendo_${aerfxout}_${yyyy}.nc
+
+echo "removing intermediate files from ifstemp: ${IFStemp} for year ${yyyy}"
+rm -f ${IFStemp}/*${yyyy}*
 #copy remaining TM5 data to outputdir + make tarball
 /perm/ms/nl/nktb/crescendo/output-copy.sh ${runid} ${yyyy}
 
