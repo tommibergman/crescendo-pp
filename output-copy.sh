@@ -86,7 +86,7 @@ cdo merge ${datapath}/emioa_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-
 # do sum of emioa and chepsoa as per data request
 cdo expr,'emioa=emioa+chepsoa;' ${basepath}/${runid}.emioa.temp.aermon.${yyyy}.nc ${outdir}/emioa_AERmon_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01-${yyyy}12.nc
 # remove temp file
-rm -f ${basepath}/${runid}.emioa.temp.aeromon.${yyyy}.nc
+rm -f ${basepath}/${runid}.emioa.temp.aermon.${yyyy}.nc
 
 #cp ${datapath}/wetoa_AERmon_* ${outdir}/
 
@@ -139,11 +139,11 @@ cp ${datapath}/ec550aer_AER6hr* ${outdir}/
 
 
 #aer6hr2d
-cdo merge ${datapath}/emioa_crescendo_AER6hr_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01010000-${yyyy}12311800.nc  ${datapath}/chepsoa2d_crescendo_AER6hr_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01010000-${yyyy}12311800.nc ${basepath}/oa.temp.${yyyy}.nc
+cdo merge ${datapath}/emioa_crescendo_AER6hr_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01010000-${yyyy}12311800.nc  ${datapath}/chepsoa2d_crescendo_AER6hr_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01010000-${yyyy}12311800.nc ${basepath}/${runid}.emioa.temp.${yyyy}.nc
 # do sum of emioa and chepsoa as per data request
-cdo expr,'emioa=emioa+chepsoa2d;' ${basepath}/oa.temp.${yyyy}.nc ${outdir}/emioa_AER6hr_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01010000-${yyyy}12311800.nc
+cdo expr,'emioa=emioa+chepsoa2d;' ${basepath}/${runid}.emioa.temp.${yyyy}.nc ${outdir}/emioa_AER6hr_EC-Earth3-AerChem_id00_r1i1p1f1_gn_${yyyy}01010000-${yyyy}12311800.nc
 # remove temp file
-rm -f ${basepath}/oa.temp.${yyyy}.nc
+rm -f ${basepath}/${runid}.emioa.temp.${yyyy}.nc
 
 #hour2d
 cp ${datapath}/ps_AERhr* ${outdir}/
