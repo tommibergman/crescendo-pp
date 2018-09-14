@@ -149,7 +149,7 @@ rm -f ${basepath}/${runid}.emioa.temp.${yyyy}.nc
 cp ${datapath}/ps_AERhr* ${outdir}/
 cp ${datapath}/tas_AERhr* ${outdir}/
 cp ${datapath}/sfo3_AERhr* ${outdir}/
-#cp ${datapath}/sfpm25_AERhr* ${outdir}/
+cp ${datapath}/sfpm25_AERhr* ${outdir}/
 cp ${datapath}/sfno2_AERhr* ${outdir}/
 
 #day3d
@@ -184,8 +184,8 @@ cp ${datapath}/co_AERmon_* ${outdir}/
 cp ${datapath}/no2_AERmon_* ${outdir}/
 cp ${datapath}/no_AERmon_* ${outdir}/
 cp ${datapath}/oh_AERmon_* ${outdir}/
-#cp ${datapath}/mmrpm10_AERmon_* ${outdir}/
-#cp ${datapath}/mmrpm2p5_AERmon_* ${outdir}/
+cp ${datapath}/mmrpm10_AERmon_* ${outdir}/
+cp ${datapath}/mmrpm2p5_AERmon_* ${outdir}/
 
 #cp ${datapath}/photo1d_AERmon_* ${outdir}/
 cp ${datapath}/jno2_AERmon_* ${outdir}/
