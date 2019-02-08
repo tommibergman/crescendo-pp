@@ -62,6 +62,7 @@ cp ${datapath}/tatp_AERmon_* ${outdir}/
 cp ${datapath}/ztp_AERmon_* ${outdir}/
 cp ${datapath}/bldep_AERmon_* ${outdir}/
 cp ${datapath}/pr_AERmon_* ${outdir}/
+cp ${datapath}/ps_AERmon_* ${outdir}/
 #cp ${datapath}/lai_AERmon_* ${outdir}/
 #cp ${datapath}/cnpz_AERmon_* ${outdir}/
 #cp ${datapath}/snc_AERmon_* ${outdir}/
@@ -255,7 +256,7 @@ tar vfcz amip-${runid}-${yyyy}.tar.gz amip-${runid}-${yyyy}
 #JASMINPATH
 JASMIN=bergmant@jasmin-xfer1.ceda.ac.uk
 JASMINPATH=/group_workspaces/jasmin2/crescendo/bergmant/
-scp amip-${runid}-${yyyy}.tar.gz ${JASMIN}:${JASMINPATH}
+#scp amip-${runid}-${yyyy}.tar.gz ${JASMIN}:${JASMINPATH}
 #fi
 #rm -f amip-${runid}-${yyyy}.tar.gz
 cd -
