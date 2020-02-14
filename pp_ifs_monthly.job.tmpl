@@ -10,7 +10,7 @@
 module load cray-snplauncher
 cd $PBS_O_WORKDIR
 # execute
-mpiexec -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 1 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 2 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 3 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 4 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 5 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 6 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 7 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 8 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 9 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 10 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 11 yyyy : -n 1 /perm/ms/nl/nktb/crescendo/crescendo_ifs.sh idid 12 yyyy
+mpiexec -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 1 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 2 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 3 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 4 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 5 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 6 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 7 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 8 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 9 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 10 yyyy : -n 1 ${PERM}/crescendo/crescendo_ifs.sh idid 11 yyyy : -n 1 ${PERM}y/crescendo/crescendo_ifs.sh idid 12 yyyy
 #submit next phase
 
 qsub pp_ifs+tm5_merge_copy.yyyy.job
